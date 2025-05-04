@@ -55,7 +55,13 @@ while True:
         # Uwaga!!
         # Przy ilosci wezlow 5, przy wezle nr. 5 jest niezgodnosci podanej wagi ostatniego wezla.
         # Wyklad: 0.000032
-        # Inne zrodla (w tym literatura): 0.000023 (dokladniej: 0.00002337)
+        # Inne zrodla (w tym literatura): 0.000023 (dokladniej: 0.00002337, dokładniej: 0.0000233670)
         # mowa tu o wezle "12.640801"
 
     print(wynik)
+
+# to do:
+"""
+1. Zrobic wiecej funkcji i dac wybor uzytkownikowi
+2. sprawdzic wezel 5 w ilosci wezlow 5
+"""
