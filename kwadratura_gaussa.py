@@ -17,14 +17,13 @@ def GaussLaguerre(f, iloscWezlow):
     if iloscWezlow not in data:
         print("Liczba węzłów musi wynosić 2, 3, 4 lub 5")
         return None
-
     # np dla 2 wezlow: data[2]["wezly"]
     wezly = data[iloscWezlow]["wezly"]
     wagiWezlow = data[iloscWezlow]["wagiWezlow"]
-
+    iloscIteracji = int(iloscWezlow)
     # obliczenie przyblizenia calki metoda Gaussa – Laguerre'a
     # "I" w przyblizeniu to suma od i=1 do n, pod ktora stoi: w(i) f(x(i))
     wynik = 0.0
-    for i in range(iloscWezlow):
+    for i in range(iloscIteracji):
         wynik += wagiWezlow[i] * f(wezly[i])
     return wynik
