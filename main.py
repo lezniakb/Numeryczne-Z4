@@ -1,4 +1,6 @@
 import math
+from newton_cotes import calkaSimpsona, calkujDoNieskonczonosci
+from kwadratura_gaussa import gauss_laguerre, gauss_legendre
 
 # funkcja podcalkowa
 def funPodcalkowa(x):
@@ -31,20 +33,20 @@ while True:
     if wybor == "1":
         a = float(input("Podapj oczątek przedziału: "))
         b = float(input("Podaj koniec przedziału: "))
-        # wynik = funkcja1()
+        wynik = calkaSimpsona(funPodcalkowa, a, b, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania metodą Newtona–Cotesa:", end=" ")
 
     elif wybor == "2":
         a = float(input("Podaj wartość początkową 'a' dla przedziału [0, a): "))
         delta = float(input("Podaj długość przedziału 'δ': "))
-        # wynik = funkcja2()
+        wynik = calkujDoNieskonczonosci(funPodcalkowa, a, delta, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania całki niewłaściwej metodą Newtona–Cotesa:", end=" ")
 
     elif wybor == "3":
         n = int(input("Podaj liczbę węzłów (2, 3, 4 lub 5): "))
-        # wynik = funkcja3()
+        wynik = gauss_laguerre(fxDoGaussa, n)
         print("----------------------------")
         print(f"Wynik całkowania metodą Gaussa–Laguerre’a:", end=" ")
 
@@ -52,7 +54,7 @@ while True:
         a = float(input("Podaj początek przedziału całkowania (np. 0): "))
         b = float(input("Podaj koniec przedziału całkowania (np. 1): "))
         n = int(input("Podaj liczbę węzłów (2, 3, 4 lub 5): "))
-        # wynik = funkcja4()
+        wynik = gauss_legendre(funPodcalkowa, a, b, n)
         print("----------------------------")
         print(f"Wynik całkowania metodą Gaussa–Legendre’a:", end=" ")
 
