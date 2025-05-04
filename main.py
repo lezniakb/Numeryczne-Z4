@@ -1,6 +1,6 @@
 import math
 from newton_cotes import calkaSimpsona, calkujDoNieskonczonosci
-from kwadratura_gaussa import gauss_laguerre, gauss_legendre
+from kwadratura_gaussa import GaussLaguerre
 
 # funkcja podcalkowa
 def funPodcalkowa(x):
@@ -10,13 +10,12 @@ def funPodcalkowa(x):
 def fxDoGaussa(x):
     return x ** 2
 
-dostepne_wybory = ["0", "1", "2", "3", "4"]
+dostepne_wybory = ["0", "1", "2", "3"]
 while True:
     print(f"----------------------------\nWybierz metodę całkowania:\n"
     "1. Kwadratura Newtona–Cotesa (Simpsona) na przedziale skończonym\n"
     "2. Kwadratura Newtona–Cotesa (Simpsona) – całka niewłaściwa [0, +∞)\n"
     "3. Kwadratura Gaussa–Laguerre’a dla całki ∫₀∞ e^(–x)*x² dx\n"
-    "4. Kwadratura Gaussa–Legendre’a (przeskalowana) – całkowanie na przedziale [a,b]\n"
     "0. Zakończ program.\n----------------------------")
     wybor = input("Wybierz opcję: ")
 
@@ -45,17 +44,18 @@ while True:
         print(f"Wynik całkowania całki niewłaściwej metodą Newtona–Cotesa:", end=" ")
 
     elif wybor == "3":
-        n = int(input("Podaj liczbę węzłów (2, 3, 4 lub 5): "))
-        wynik = gauss_laguerre(fxDoGaussa, n)
+        iloscWezlow = input("Podaj liczbę węzłów (2, 3, 4 lub 5): ")
+        # uwaga: iloscWezlow jest typu string aby odczytywac wezly z pliku JSON
+        wynik = GaussLaguerre(fxDoGaussa, iloscWezlow)
         print("----------------------------")
+        if wynik is None:
+            print("Funkcja nie zwróciła wyniku.")
+            continue
         print(f"Wynik całkowania metodą Gaussa–Laguerre’a:", end=" ")
-
-    elif wybor == "4":
-        a = float(input("Podaj początek przedziału całkowania (np. 0): "))
-        b = float(input("Podaj koniec przedziału całkowania (np. 1): "))
-        n = int(input("Podaj liczbę węzłów (2, 3, 4 lub 5): "))
-        wynik = gauss_legendre(funPodcalkowa, a, b, n)
-        print("----------------------------")
-        print(f"Wynik całkowania metodą Gaussa–Legendre’a:", end=" ")
+        # Uwaga!!
+        # Przy ilosci wezlow 5, przy wezle nr. 5 jest niezgodnosci podanej wagi ostatniego wezla.
+        # Wyklad: 0.000032
+        # Inne zrodla (w tym literatura): 0.000023 (dokladniej: 0.00002337)
+        # mowa tu o wezle "12.640801"
 
     print(wynik)
