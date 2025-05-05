@@ -62,9 +62,3 @@ while True:
         # mowa tu o wezle "12.640801"
 
     print(wynik)
-
-# to do:
-"""
-1. Zrobic wiecej funkcji i dac wybor uzytkownikowi
-2. sprawdzic wezel 5 w ilosci wezlow 5
-"""
