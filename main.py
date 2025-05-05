@@ -3,14 +3,6 @@ from newton_cotes import calkaSimpsona, calkujDoNieskonczonosci
 from kwadratura_gaussa import GaussLaguerre
 from funkcje import wybierzFunkcje
 
-# funkcja podcalkowa
-def funPodcalkowa(x):
-    return math.exp(-x) * (x ** 2)
-
-# wybrane f(x) dla metody Gaussa (wariant 3): f(x)=x^2
-def fxDoGaussa(x):
-    return x ** 2
-
 dostepne_wybory = ["0", "1", "2", "3"]
 while True:
     print(f"----------------------------\nWybierz metodę całkowania:\n"
@@ -18,7 +10,7 @@ while True:
     "2. Kwadratura Newtona–Cotesa (Simpsona) – całka niewłaściwa [0, +∞)\n"
     "3. Kwadratura Gaussa–Laguerre’a dla całki ∫₀∞ e^(–x)*x² dx\n"
     "0. Zakończ program.\n----------------------------")
-    wybor = input("Wybierz opcję: ")
+    wybor = input("Wybierz opcję [0-3]: ")
 
     if wybor == "0":
         exit(0)
@@ -30,7 +22,7 @@ while True:
 
     FunWaga, funBezWagi = wybierzFunkcje()
 
-    dokladnosc = float(input("Podaj wymaganą dokładność (np. 0.0001): "))
+    dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
 
     if wybor == "1":
         a = float(input("Podaj początek przedziału: "))
@@ -47,7 +39,7 @@ while True:
         print(f"Wynik całkowania całki niewłaściwej metodą Newtona–Cotesa:", end=" ")
 
     elif wybor == "3":
-        iloscWezlow = input("Podaj liczbę węzłów (2, 3, 4 lub 5): ")
+        iloscWezlow = input("Podaj liczbę węzłów [2, 3, 4 lub 5]: ")
         # uwaga: iloscWezlow jest typu string aby odczytywac wezly z pliku JSON
         wynik = GaussLaguerre(funBezWagi, iloscWezlow)
         print("----------------------------")
