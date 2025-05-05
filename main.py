@@ -6,9 +6,9 @@ from funkcje import wybierzFunkcje
 dostepne_wybory = ["0", "1", "2", "3"]
 while True:
     print(f"----------------------------\nWybierz metodę całkowania:\n"
-    "1. Kwadratura Newtona–Cotesa (Simpsona) na przedziale skończonym\n"
-    "2. Kwadratura Newtona–Cotesa (Simpsona) – całka niewłaściwa [0, +∞)\n"
-    "3. Kwadratura Gaussa–Laguerre’a dla całki ∫₀∞ e^(–x)*x² dx\n"
+    "1. Kwadratura Newtona–Cotesa (wzór Simpsona) na przedziale skończonym\n"
+    "2. Kwadratura Newtona–Cotesa (wzór Simpsona) – całka niewłaściwa [0, +∞)\n"
+    "3. Kwadratura Gaussa–Laguerre’a [0, +∞) z wagą e^(-x)\n"
     "0. Zakończ program.\n----------------------------")
     wybor = input("Wybierz opcję [0-3]: ")
 
@@ -22,11 +22,10 @@ while True:
 
     FunWaga, funBezWagi = wybierzFunkcje()
 
-    dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
-
     if wybor == "1":
         a = float(input("Podaj początek przedziału: "))
         b = float(input("Podaj koniec przedziału: "))
+        dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
         wynik = calkaSimpsona(FunWaga, a, b, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania metodą Newtona–Cotesa:", end=" ")
@@ -34,6 +33,7 @@ while True:
     elif wybor == "2":
         a = float(input("Podaj wartość początkową 'a' dla przedziału [0, a): "))
         delta = float(input("Podaj długość przedziału 'δ': "))
+        dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
         wynik = calkujDoNieskonczonosci(FunWaga, a, delta, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania całki niewłaściwej metodą Newtona–Cotesa:", end=" ")
