@@ -1,6 +1,5 @@
 import math
 
-
 def xKwadratWaga(x):
     #  f(x) = x^2 z wagą e^(-x)
     return math.exp(-x) * (x ** 2)

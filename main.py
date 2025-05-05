@@ -1,4 +1,3 @@
-import math
 from newton_cotes import calkaSimpsona, calkujDoNieskonczonosci
 from kwadratura_gaussa import GaussLaguerre
 from funkcje import wybierzFunkcje
