@@ -46,10 +46,5 @@ while True:
             print("Funkcja nie zwróciła wyniku.")
             continue
         print(f"Wynik całkowania metodą Gaussa–Laguerre’a:", end=" ")
-        # Uwaga!!
-        # Przy ilosci wezlow 5, przy wezle nr. 5 jest niezgodnosci podanej wagi ostatniego wezla.
-        # Wyklad: 0.000032
-        # Inne zrodla (w tym literatura): 0.000023 (dokladniej: 0.00002337, dokładniej: 0.0000233670)
-        # mowa tu o wezle "12.640801"
 
     print(wynik)
