@@ -21,11 +21,12 @@ while True:
 
     FunWaga, funBezWagi = wybierzFunkcje()
 
+    n = 0
     if wybor == "1":
         a = float(input("Podaj początek przedziału: "))
         b = float(input("Podaj koniec przedziału: "))
         dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
-        wynik = calkaSimpsona(FunWaga, a, b, dokladnosc)
+        wynik, n = calkaSimpsona(FunWaga, a, b, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania metodą Newtona–Cotesa:", end=" ")
 
@@ -33,7 +34,7 @@ while True:
         a = float(input("Podaj wartość początkową 'a' dla przedziału [0, a): "))
         delta = float(input("Podaj długość przedziału 'δ': "))
         dokladnosc = float(input("Podaj wymaganą dokładność [np. 0.0001]: "))
-        wynik = calkujDoNieskonczonosci(FunWaga, a, delta, dokladnosc)
+        wynik, n = calkujDoNieskonczonosci(FunWaga, a, delta, dokladnosc)
         print("----------------------------")
         print(f"Wynik całkowania całki niewłaściwej metodą Newtona–Cotesa:", end=" ")
 
@@ -48,3 +49,6 @@ while True:
         print(f"Wynik całkowania metodą Gaussa–Laguerre’a:", end=" ")
 
     print(wynik)
+
+    if n != 0:
+        print(f"n = {n}")

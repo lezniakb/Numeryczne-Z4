@@ -37,7 +37,7 @@ def calkaSimpsona(f, a, b, dokladnosc):
         nowyWynik = wzorSimpsona(f, a, b, n)
         # jesli osiagnelismy dokladnosc to zwroc wynik i zakoncz dzialanie
         if abs(nowyWynik - wynik) < dokladnosc:
-            return nowyWynik
+            return nowyWynik, n
         wynik = nowyWynik
 
 
@@ -54,15 +54,18 @@ def calkujDoNieskonczonosci(f, a, delta, dokladnosc):
            ze dalszy wklad całki w wynik jest znikomy.
     """
     # calka na poczatkowym przedziale [0, a)
-    wynik = calkaSimpsona(f, 0, a, dokladnosc)
+    wynik, nPocz = calkaSimpsona(f, 0, a, dokladnosc)
     x = a
-    
+
+    calkowitaLiczbaPodz = nPocz
+
     while True:
         # oblicz kolejna calke z nastepnego przedzialu
         # np. jesli pierwszy to byl [0, 2), to nastepny to [2, 2+delta)
-        nastepnyWynik = calkaSimpsona(f, x, x + delta, dokladnosc)
+        nastepnyWynik, n = calkaSimpsona(f, x, x + delta, dokladnosc)
+        calkowitaLiczbaPodz += n
         # jesli osiagniemy dokladnosc to zwroc wynik
         if abs(nastepnyWynik) < dokladnosc:
-            return wynik
+            return wynik, calkowitaLiczbaPodz
         wynik += nastepnyWynik
         x += delta

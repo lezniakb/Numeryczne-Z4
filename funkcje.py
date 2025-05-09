@@ -1,5 +1,12 @@
 import math
 
+def wielomian(x):
+    # najlepszy do testowania kwadratur na przedziale skonczonym
+    return x**3 - 2*x**2 + 2
+
+def wielomianWaga(x):
+    return math.exp(-x) * wielomian(x)
+
 def xKwadratWaga(x):
     #  f(x) = x^2 z wagą e^(-x)
     return math.exp(-x) * (x ** 2)
@@ -9,28 +16,18 @@ def xKwadrat(x):
     return x ** 2
 
 
-def sinWaga(x):
-    # f(x) = sin(x) z wagą e^(-x)
-    return math.exp(-x) * math.sin(x)
+def eksponenta(x):
+    #  f(x) = e^(-x/2)
+    return math.exp(-x/2)
 
-def sinF(x):
-    # f(x) = sin(x) bez wagi
-    return math.sin(x)
-
-
-def ulamekWaga(x):
-    # f(x) = 1/(1+x^2) z wagą e^(-x)
-    return math.exp(-x) / (1 + x ** 2)
-
-
-def ulamek(x):
-    # f(x) = 1/(1+x^2) bez wagi
-    return 1 / (1 + x ** 2)
-
+def eksponentaWaga(x):
+    #  f(x) = e^(-x/2) z wagą e^(-x)
+    return math.exp(-x) * eksponenta(x)
 
 def xWaga(x):
     # f(x) = x z wagą e^(-x)
     return math.exp(-x) * x
+
 
 def xF(x):
     # f(x) = x bez wagi
@@ -49,14 +46,14 @@ dostepneFunkcje = {
         "bezWagi": xF
     },
     "3": {
-        "nazwa": "sin(x)",
-        "zWaga": sinWaga,
-        "bezWagi": sinF
+        "nazwa": "x^3 - 2x^2 + 2",
+        "zWaga": wielomianWaga,
+        "bezWagi": wielomian
     },
     "4": {
-        "nazwa": "1/(1+x^2)",
-        "zWaga": ulamekWaga,
-        "bezWagi": ulamek
+        "nazwa": "e^(-x/2)",
+        "zWaga": eksponentaWaga,
+        "bezWagi": eksponenta
     }
 }
 
@@ -64,8 +61,8 @@ def wybierzFunkcje():
     print("\nWybierz funkcję podcałkową:")
     print("1. f(x) = x^2")
     print("2. f(x) = x")
-    print("3. f(x) = sin(x)")
-    print("4. f(x) = 1/(1+x^2)")
+    print("3. f(x) = x^3 - 2x^2 + 2")
+    print("4. f(x) = e^(-x/2)")
 
     wybor = input("Wybór [1-4]: ")
 
